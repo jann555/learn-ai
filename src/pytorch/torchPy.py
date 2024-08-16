@@ -29,3 +29,8 @@ print(torch.matrix_power(a, 3))
 print(torch.matrix_power(a, 4))
 # tensor([[5, 3],
 #         [3, 2]])
+
+if torch.cuda.is_available():
+    print('GPU Available!')
+else:
+    print('My gaming computer is not good')

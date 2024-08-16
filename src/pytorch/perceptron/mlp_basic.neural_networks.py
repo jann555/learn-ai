@@ -1,4 +1,5 @@
 import torch
+import torch.optim as optim
 import torch.nn as nn
 
 
@@ -23,3 +24,6 @@ print(model)
 # )
 
 print(model.forward(torch.rand(10)))
+# momentum=0.9 smoothes out updates and can help training
+optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+print(f'optimizer: {optimizer}')
