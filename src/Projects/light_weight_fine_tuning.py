@@ -67,9 +67,12 @@ model = AutoModelForSequenceClassification.from_pretrained(
 model.config.pad_token_id = model.config.eos_token_id
 model.resize_token_embeddings(len(tokenizer))
 print(model)
-# Freezing weights for pre-training and fine-tuning
-for param in model.parameters():
-    param.requires_grad = False
+model_targets = ["c_proj", "c_fc", "c_attn"]
+# Unfreeze specific layers for fine-tuning
+for name, param in model.named_parameters():
+    if any(target in name for target in model_targets):
+        param.requires_grad = True
+
 # Performing Parameter-Efficient Fine-Tuning
 
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
@@ -120,7 +123,7 @@ config = LoraConfig(
     lora_dropout=0.01,
     bias="lora_only",
     task_type=TaskType.SEQ_CLS,
-    target_modules=["c_proj", "c_fc", "c_attn"],
+    target_modules=model_targets,
     use_rslora=True,
     fan_in_fan_out=True
 )

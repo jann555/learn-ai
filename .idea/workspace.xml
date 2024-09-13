@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Only inference is missing">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/Lora-gpt2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/peft/peft-example-lora.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft-example-lora.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/peft/peft_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft_example.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ki11nXpQLj0JJExWWdBDi7jPqt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Lora-gpt2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bert_tokenizer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cuta_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.example.neural_network.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fine-tuning.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fine_tuning_bert.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hf_automodel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hf_imdb_dataset.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hugging_face_example_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.light_weight_fine_tuning.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ml[_basic.data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mlp_basic.data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mlp_basic.loss.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mlp_basic.neural_networks.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mlp_basic.trainingloop.executor&quot;: &quot;Run&quot;,
+    &quot;Python.peft-example-lora.executor&quot;: &quot;Run&quot;,
+    &quot;Python.peft_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python.perf-test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tl.mobilenetv3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.torchPy.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\jupyter_notebooks" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\pytorch" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="learn-ai" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="" />
+      <created>1723751370996</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723751370996</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit with examples">
+      <option name="closed" value="true" />
+      <created>1723754430733</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723754430733</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pytorch:&#10;-datasets&#10;-optimizers&#10;-loss&#10;-neural networks">
+      <option name="closed" value="true" />
+      <created>1723815527405</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723815527405</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Deep learning training material">
+      <option name="closed" value="true" />
+      <created>1724287978988</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724287978988</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fine tuning">
+      <option name="closed" value="true" />
+      <created>1724630416998</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724630416998</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fine tuning">
+      <option name="closed" value="true" />
+      <created>1724632781410</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724632781410</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added peft examples">
+      <option name="closed" value="true" />
+      <created>1725395915662</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725395915662</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Leaving the main file intact">
+      <option name="closed" value="true" />
+      <created>1725395944223</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725395944223</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Padding issue">
+      <option name="closed" value="true" />
+      <created>1725396096647</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725396096647</updated>
+    </task>
+    <task id="LOCAL-00009" summary="working using wrong model">
+      <option name="closed" value="true" />
+      <created>1725409243848</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725409243848</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Only inference is missing">
+      <option name="closed" value="true" />
+      <created>1725920686665</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725920686665</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit with examples" />
+    <MESSAGE value="Pytorch:&#10;-datasets&#10;-optimizers&#10;-loss&#10;-neural networks" />
+    <MESSAGE value="Deep learning training material" />
+    <MESSAGE value="Fine tuning" />
+    <MESSAGE value="Added peft examples" />
+    <MESSAGE value="Leaving the main file intact" />
+    <MESSAGE value="Padding issue" />
+    <MESSAGE value="working using wrong model" />
+    <MESSAGE value="Only inference is missing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Only inference is missing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft-example-lora.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
