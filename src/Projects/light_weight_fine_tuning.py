@@ -68,10 +68,6 @@ model.config.pad_token_id = model.config.eos_token_id
 model.resize_token_embeddings(len(tokenizer))
 print(model)
 model_targets = ["c_proj", "c_fc", "c_attn"]
-# Unfreeze specific layers for fine-tuning
-for name, param in model.named_parameters():
-    if any(target in name for target in model_targets):
-        param.requires_grad = True
 
 # Performing Parameter-Efficient Fine-Tuning
 
@@ -90,8 +86,8 @@ def get_trainer(trainer_model, dataset_name, metrics, num_epoch, output_dir):
         args=TrainingArguments(
             output_dir=output_dir,
             learning_rate=2e-5,
-            per_device_train_batch_size=16,
-            per_device_eval_batch_size=16,
+            per_device_train_batch_size=32,
+            per_device_eval_batch_size=96,
             eval_strategy="epoch",
             save_strategy="epoch",
             num_train_epochs=num_epoch,
@@ -119,9 +115,9 @@ original_model_eval = gpt2_model_trainer.evaluate()
 
 config = LoraConfig(
     r=1,
-    lora_alpha=16,
+    lora_alpha=8,
     lora_dropout=0.01,
-    bias="lora_only",
+    bias="none",
     task_type=TaskType.SEQ_CLS,
     target_modules=model_targets,
     use_rslora=True,
@@ -129,6 +125,15 @@ config = LoraConfig(
 )
 lora_model = get_peft_model(model, config)
 lora_model.print_trainable_parameters()
+
+# Freeze all parameters
+for param in lora_model.parameters():
+    param.requires_grad = False
+
+# Unfreeze specific layers for fine-tuning
+for name, param in lora_model.named_parameters():
+    if any(target in name for target in model_targets):
+        param.requires_grad = True
 
 lora_trained = get_trainer(
     trainer_model=lora_model,
