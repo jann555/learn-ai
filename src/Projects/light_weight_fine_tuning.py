@@ -1,86 +1,51 @@
-# Loading and Evaluating a Foundation Model
-import numpy as np
-import torch
+# Section imports
 from datasets import load_dataset
-from transformers import (
-    AutoTokenizer, Trainer, TrainingArguments, DataCollatorWithPadding, AutoModelForSequenceClassification
-)
+import numpy as np
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments, \
+    DataCollatorWithPadding
+from peft import LoraConfig, get_peft_model, TaskType
+from peft import AutoPeftModelForSequenceClassification
+import torch
+import evaluate
 
-from peft import LoraConfig, get_peft_model, TaskType, AutoPeftModelForSequenceClassification
+# Create variables and constants
+FOUNDATION_MODEL = "gpt2"
+tokenized_dataset = {}
+splits = ["train", "test"]
 
-model_name = "gpt2"
-dataset_path = 'poem_sentiment'
-
-# Select cuda instead of cpu when available
-if torch.cuda.is_available():
-    device = torch.device("cuda")
-else:
-    device = torch.device("cpu")
-
-
-def get_tokenizer(model_param):
-    tokenizer_object = AutoTokenizer.from_pretrained(model_name, use_fast=True)
-    tokenizer_object.pad_token = tokenizer_object.eos_token
-    return tokenizer_object
+# Downloading the date set
+column_label = "verse_text"
+dataset_name = 'poem_sentiment'
+dataset = load_dataset(dataset_name, split='train').train_test_split(test_size=0.2, shuffle=True, seed=24)
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
 
-def tokenize_inputs(inputs):
-    prompt = inputs["verse_text"]
+# Defined function to process tokenized inputs
+
+def tokenized_inputs(inputs, tokenizer):
+    prompt = inputs[column_label]
     tokenizer.truncation_side = "left"
     tokenized_items = tokenizer(
         prompt,
         padding=True,
         truncation=True,
         return_tensors="pt",
-        max_length=512,
+        max_length=512
     )
     return tokenized_items
 
 
-tokenizer = get_tokenizer(model_name)
-
-tokenized_dataset = {}
-splits = ["train", "test"]
-dataset = load_dataset(dataset_path, split="train").train_test_split(
-    test_size=0.2, shuffle=True, seed=24
-)
-
-print(dataset["train"][0])
-
-for split in splits:
-    tokenized_dataset[split] = dataset[split].map(
-        lambda x: tokenize_inputs(x), batched=True
-    )
-
-print("tokenized_dataset", tokenized_dataset["train"])
-
-id2label = {0: "negative", 1: "positive", 2: "no impact", 3: "mixed"}
-label2id = {"negative": 0, "positive": 1, "no impact": 2, "mixed": 3}
-
-model = AutoModelForSequenceClassification.from_pretrained(
-    model_name,
-    num_labels=4,
-    id2label=id2label,
-    label2id=label2id,
-    ignore_mismatched_sizes=True,
-)
-model.config.pad_token_id = model.config.eos_token_id
-model.resize_token_embeddings(len(tokenizer))
-print(model)
-model_targets = ["c_proj", "c_fc", "c_attn"]
-
-# Performing Parameter-Efficient Fine-Tuning
-
-data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+# Defined function to evaluate accuracy of model
+# https://huggingface.co/spaces/evaluate-metric/precision
+def compute_metrics(eval_preds):
+    metric = evaluate.load("precision")
+    logits, labels = eval_preds
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels, average="micro")
 
 
-def compute_metrics(eval_pred):
-    predictions, labels = eval_pred
-    predictions = np.argmax(predictions, axis=-1)
-    return {"accuracy": (predictions == labels).mean()}
-
-
-def get_trainer(trainer_model, dataset_name, metrics, num_epoch, output_dir):
+# Created Generic function to return the Trainer object
+def get_trainer(trainer_model, dataset_name, metrics, num_epoch, output_dir, tokenizer):
     trained_model = Trainer(
         model=trainer_model,
         args=TrainingArguments(
@@ -88,7 +53,7 @@ def get_trainer(trainer_model, dataset_name, metrics, num_epoch, output_dir):
             learning_rate=2e-5,
             per_device_train_batch_size=32,
             per_device_eval_batch_size=96,
-            eval_strategy="epoch",
+            evaluation_strategy="epoch",
             save_strategy="epoch",
             num_train_epochs=num_epoch,
             weight_decay=0.01,
@@ -98,72 +63,124 @@ def get_trainer(trainer_model, dataset_name, metrics, num_epoch, output_dir):
         eval_dataset=dataset_name["test"],
         tokenizer=tokenizer,
         compute_metrics=metrics,
-        data_collator=data_collator,
+        data_collator=DataCollatorWithPadding(tokenizer=tokenizer),
     )
     return trained_model
 
 
+# Define Tokenizer function
+def get_tokenizer(modal_name):
+    tokenizer = AutoTokenizer.from_pretrained(modal_name)
+    tokenizer.pad_token = tokenizer.eos_token
+    return tokenizer
+
+
+# Configuring the tokenizer and adding padding tokens function
+tokenizer_model = get_tokenizer(FOUNDATION_MODEL)
+
+# Tokenize inputs
+for split in splits:
+    tokenized_dataset[split] = dataset[split].map(
+        lambda x: tokenized_inputs(x, tokenizer_model), batched=True
+    )
+
+print("tokenized_dataset", tokenized_dataset["train"])
+
+# Create Label objects to pass down to ouw model
+id2label = {0: "negative", 1: "positive", 2: "no impact", 3: "mixed"}
+label2id = {"negative": 0, "positive": 1, "no impact": 2, "mixed": 3}
+
+# Loading the foundation model with the correct number of labels and identifiers
+model = AutoModelForSequenceClassification.from_pretrained(
+    FOUNDATION_MODEL,
+    num_labels=len(id2label),
+    id2label=id2label,
+    label2id=label2id,
+)
+
+model.config.pad_token_id = model.config.eos_token_id
+model.resize_token_embeddings(len(tokenizer_model))
+model.to(device)
+
+# Created Trainer Object and loaded the original model
 gpt2_model_trainer = get_trainer(
     trainer_model=model,
     dataset_name=tokenized_dataset,
-    metrics=None,
+    metrics=compute_metrics,
     num_epoch=1,
-    output_dir="./model"
+    output_dir="./",
+    tokenizer=tokenizer_model
 )
-print('Evaluating original model')
+print(f'Evaluating foundation model...')
 original_model_eval = gpt2_model_trainer.evaluate()
+print(original_model_eval)
 
+# Configure LoRa settings
+targets = ["c_proj", "c_fc", "c_attn"]
 config = LoraConfig(
     r=1,
     lora_alpha=8,
     lora_dropout=0.01,
     bias="none",
     task_type=TaskType.SEQ_CLS,
-    target_modules=model_targets,
-    use_rslora=True,
+    target_modules=targets,
     fan_in_fan_out=True
 )
+# Create Peft Model
 lora_model = get_peft_model(model, config)
 lora_model.print_trainable_parameters()
 
-# Freeze all parameters
-for param in lora_model.parameters():
-    param.requires_grad = False
-
-# Unfreeze specific layers for fine-tuning
+# Freeze All parameters except those being fine tunes
 for name, param in lora_model.named_parameters():
-    if any(target in name for target in model_targets):
+    if any(target in name for target in targets):
         param.requires_grad = True
+    else:
+        param.requires_grad = False
 
-lora_trained = get_trainer(
+# Define Train Object Using Lora Model from Peft
+lora_trainer = get_trainer(
     trainer_model=lora_model,
     dataset_name=tokenized_dataset,
     metrics=compute_metrics,
-    num_epoch=4,
-    output_dir="./gpt-lora"
+    num_epoch=1,
+    output_dir="./gpt-lora",
+    tokenizer=tokenizer_model
 )
-print('Training model')
-lora_trained.train()
-print('Evaluating lora model')
-lora_model_eval = lora_trained.evaluate()
+lora_trainer.train()
+# Print lora_trainer evaluation
+eval_lora = lora_trainer.evaluate()
+print(eval_lora)
 
-lora_model.save_pretrained("gpt-lora")
+lora_model.save_pretrained("gpt-lora-trained")
 
-# Inference with PEFT
-# Loading a Saved PEFT Model
-lora_model = AutoPeftModelForSequenceClassification.from_pretrained(
-    "gpt-lora", num_labels=4)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+# Loading saved PEFT model from directory
+lora_peft_model = AutoPeftModelForSequenceClassification.from_pretrained("gpt-lora-trained", num_labels=4)
+lora_peft_model.config.pad_token_id = lora_peft_model.config.eos_token_id
+lora_peft_model.resize_token_embeddings(len(tokenizer_model))
+lora_peft_model.to(device)
+lora_model_trainer = get_trainer(
+    trainer_model=lora_peft_model,
+    dataset_name=tokenized_dataset,
+    metrics=compute_metrics,
+    num_epoch=1,
+    output_dir="./",
+    tokenizer=tokenizer_model
+)
+lora_model_eval = lora_model_trainer.evaluate()
+print(f'Lora Eval {lora_model_eval}')
+
+# Starting Inference
 input_text = "in prosperous days. like a dim, waning lamp"
-model_inputs = tokenizer(input_text, return_tensors="pt")
+model_inputs = tokenizer_model(input_text, return_tensors="pt").to(device)
 
-# Perform inference
 with torch.no_grad():
-    outputs = lora_model(**model_inputs)
-    result = torch.argmax(outputs.logits, dim=-1)
+    outputs = lora_peft_model(**model_inputs)
+    results = torch.argmax(outputs.logits, dim=-1)
+# Converting Prediction to Label
+predicted_label = id2label[results.item()]
 
-# Convert prediction to label
-predicted_label = id2label[result.item()]
-
+# Input Text with Predicted outout
 print(f"Input: {input_text}\n Predicted label: {predicted_label}")
+
+# comparing Evaluation Results
 print(f'Original model eval: {original_model_eval} \nLora Model Eval: {lora_model_eval}')
