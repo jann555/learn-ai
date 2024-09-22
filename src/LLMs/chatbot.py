@@ -12,6 +12,7 @@ OPEN_AI_KEY = ''
 print(OPEN_AI_KEY)
 MAX_TOKENS = 150
 EMBEDDING_MODEL_NAME = "text-embedding-ada-002"
+COMPLETION_MODEL_NAME = "gpt-3.5-turbo-instruct"
 
 openai.api_base = "https://openai.vocareum.com/v1"
 openai.api_key = OPEN_AI_KEY
@@ -36,7 +37,7 @@ wiki_year_2022_events = "https://en.wikipedia.org/w/api.php?action=query&prop=ex
 
 def get_answer(prompt: str, max_tokens: int):
     answer = openai.Completion.create(
-        model="gpt-3.5-turbo-instruct",
+        model=COMPLETION_MODEL_NAME,
         prompt=prompt,
         max_tokens=max_tokens
     )["choices"][0]["text"].strip()
@@ -162,7 +163,6 @@ Answer:"""
     return prompt_template.format("\n\n###\n\n".join(context), question)
 
 
-COMPLETION_MODEL_NAME = "gpt-3.5-turbo-instruct"
 
 
 def answer_question(
