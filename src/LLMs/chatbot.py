@@ -66,7 +66,7 @@ def load_and_wrabgle(dataset_url):
             except:
                 # If the row's text isn't a date, add the prefix
                 row["text"] = prefix + " – " + row["text"]
-    data_frame = data_frame[data_frame["text"].str.contains(" – ")]
+    data_frame = data_frame[data_frame["text"].str.contains(" – ")].reset_index(drop=True)
     return data_frame
 
 
