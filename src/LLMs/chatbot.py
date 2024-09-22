@@ -163,8 +163,6 @@ Answer:"""
     return prompt_template.format("\n\n###\n\n".join(context), question)
 
 
-
-
 def answer_question(
         question, df, max_prompt_tokens=1800, max_answer_tokens=150
 ):
