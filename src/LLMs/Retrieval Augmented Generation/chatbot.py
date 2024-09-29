@@ -1,4 +1,4 @@
-import os
+from decouple import config
 import openai
 from openai.embeddings_utils import get_embedding, distances_from_embeddings
 import tiktoken
@@ -8,19 +8,13 @@ import pandas as pd
 
 import requests
 
-OPEN_AI_KEY = ''
-print(OPEN_AI_KEY)
+OPEN_AI_KEY = config("OPEN_AI_KEY")
 MAX_TOKENS = 150
 EMBEDDING_MODEL_NAME = "text-embedding-ada-002"
 COMPLETION_MODEL_NAME = "gpt-3.5-turbo-instruct"
 
 openai.api_base = "https://openai.vocareum.com/v1"
 openai.api_key = OPEN_AI_KEY
-
-'''Step 0: Inspecting Non-Customized Results
-Before we perform any prompt engineering, let's ask the OpenAI model some questions and see how it answers.
-(If you encounter an AuthenticationError when running this code, 
-make sure that you have added a valid API key to the cell above and executed it.)'''
 
 ukraine_prompt = """
 Question: "When did Russia invade Ukraine?"
@@ -188,9 +182,7 @@ def answer_question(
         return ""
 
 
-'''Step 0: Inspecting Non-Customized Results
-Before we perform any prompt engineering, let's ask the OpenAI model some questions and see how it answers.
-'''
+print('Printing untrained answers')
 
 initial_ukraine_answer = get_answer(ukraine_prompt, MAX_TOKENS)
 print(initial_ukraine_answer)
@@ -198,6 +190,7 @@ print(initial_ukraine_answer)
 initial_twitter_answer = get_answer(twitter_prompt, MAX_TOKENS)
 print(initial_twitter_answer)
 
+print('Preparing Data Set...')
 # Step 1: Prepare Dataset
 # Loading and Wrangling Data
 
@@ -213,36 +206,7 @@ except:
 else:
     print('"Embedding is loaded to CSV"')
 
-get_rows_sorted_by_relevance(ukraine_prompt, data_f)
-get_rows_sorted_by_relevance(twitter_prompt, data_f)
-
-'''Step 3: Create a Function that Composes a Text Prompt
-Building on that sorted list of rows, we're going to select the create a text prompt that provides context to a 
-Completion model in order to help it answer a question. The outline of the prompt looks like this:
-
-Answer the question based on the context below, and if the
-question can't be answered based on the context, say "I don't
-know"
-
-Context:
-
-{context}
-
----
-
-Question: {question}
-Answer:
-We want to fit as much of our dataset as possible into the "context" part of the prompt without exceeding the number 
-of tokens allowed by the Completion model, which is currently 4,000. So we'll loop over the dataset, counting the 
-tokens as we go, and stop when we hit the limit. Then we'll join that list of text data into a single string and 
-add it to the prompt.'''
-
-print(create_prompt(ukraine_prompt, data_f, 200))
-print(create_prompt(twitter_prompt, data_f, 100))
-
-'''Step 4: Create a Function that Answers a Question
-Our final step is to send that text prompt to a Completion model and parse the model output!'''
-
+print('Answering Trained questions')
 custom_ukraine_answer = answer_question(ukraine_prompt, data_f)
 print(custom_ukraine_answer)
 custom_twitter_answer = answer_question(twitter_prompt, data_f)
