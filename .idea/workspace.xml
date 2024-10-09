@@ -4,16 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Only inference is missing">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/Lora-gpt2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/peft/peft-example-lora.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft-example-lora.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/adaptation_foundation_models/peft/peft_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft_example.py" afterDir="false" />
+    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Cleaned up chatbot.py">
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_hf_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_image_to_image.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_image_to_image_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_inpainting.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_text_to_image.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_text_to_image_example_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_unconditional_generation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_video_ie1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_video_ie2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/earth.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/in_the_desert_outpaint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/inpaint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/monalisa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/monalisa_mask.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/sketch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Computer Vision/xwing.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,40 +48,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.Lora-gpt2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.bert_tokenizer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cuta_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.example.neural_network.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fine-tuning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.fine_tuning_bert.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hf_automodel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hf_imdb_dataset.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hugging_face_example_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.light_weight_fine_tuning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ml[_basic.data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mlp_basic.data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mlp_basic.loss.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mlp_basic.neural_networks.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mlp_basic.trainingloop.executor&quot;: &quot;Run&quot;,
-    &quot;Python.peft-example-lora.executor&quot;: &quot;Run&quot;,
-    &quot;Python.peft_example.executor&quot;: &quot;Run&quot;,
-    &quot;Python.perf-test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tl.mobilenetv3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.torchPy.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.Lora-gpt2.executor": "Run",
+    "Python.bert_tokenizer.executor": "Run",
+    "Python.chatbot.executor": "Run",
+    "Python.cuta_test.executor": "Run",
+    "Python.ddpm_from_huggingface.executor": "Run",
+    "Python.ddpm_image_to_image.executor": "Run",
+    "Python.ddpm_image_to_image_2.executor": "Run",
+    "Python.ddpm_inpainting.executor": "Run",
+    "Python.ddpm_video_ie1.executor": "Run",
+    "Python.ddpm_video_ie2.executor": "Run",
+    "Python.example.neural_network.executor": "Run",
+    "Python.fine-tuning.executor": "Run",
+    "Python.fine_tuning_bert.executor": "Run",
+    "Python.hf_automodel.executor": "Run",
+    "Python.hf_imdb_dataset.executor": "Run",
+    "Python.hugging_face_example_2.executor": "Run",
+    "Python.light_weight_fine_tuning.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.ml[_basic.data.executor": "Run",
+    "Python.mlp_basic.data.executor": "Run",
+    "Python.mlp_basic.loss.executor": "Run",
+    "Python.mlp_basic.neural_networks.executor": "Run",
+    "Python.mlp_basic.trainingloop.executor": "Run",
+    "Python.peft-example-lora.executor": "Run",
+    "Python.peft_example.executor": "Run",
+    "Python.perf-test.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.tl.mobilenetv3.executor": "Run",
+    "Python.torchPy.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/freda/Documents/Github/learn-ai/src/Computer Vision",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\Computer Vision" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\LLMs\Retrieval Augmented Generation" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\jupyter_notebooks" />
-      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\pytorch" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\LLMs\jupytes_notebooks\Build Custom Dataset" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\LLMs\Retrieval Augmented Generation" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\LLMs" />
+      <recent name="C:\Users\freda\Documents\Github\learn-ai\src\LLMs\jupytes_notebooks\NLP-fundamentals" />
     </key>
   </component>
   <component name="RunManager">
@@ -195,7 +220,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725920686665</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Created first chatbot">
+      <option name="closed" value="true" />
+      <created>1726950796331</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726950796331</updated>
+    </task>
+    <task id="LOCAL-00012" summary="remove spaces">
+      <option name="closed" value="true" />
+      <created>1727035759418</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727035759418</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Adding Lectures files">
+      <option name="closed" value="true" />
+      <created>1727191011137</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727191011137</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Cleaned up chatbot.py">
+      <option name="closed" value="true" />
+      <created>1727649740015</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1727649740015</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,16 +265,15 @@
     <MESSAGE value="Padding issue" />
     <MESSAGE value="working using wrong model" />
     <MESSAGE value="Only inference is missing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Only inference is missing" />
+    <MESSAGE value="Created first chatbot" />
+    <MESSAGE value="remove spaces" />
+    <MESSAGE value="Adding Lectures files" />
+    <MESSAGE value="Cleaned up chatbot.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up chatbot.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/adaptation_foundation_models/peft_examples/peft-example-lora.py</url>
           <line>17</line>
