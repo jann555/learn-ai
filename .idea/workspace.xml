@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Cleaned up chatbot.py">
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_hf_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_image_to_image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_image_to_image_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_inpainting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_text_to_image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_text_to_image_example_2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_unconditional_generation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_video_ie1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/ddpm_video_ie2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/earth.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/in_the_desert_outpaint.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/inpaint.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/monalisa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/monalisa_mask.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/sketch.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer Vision/xwing.jpeg" afterDir="false" />
+    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Gean AI Apps/intro/ReAct_agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Gean AI Apps/intro/craft_prompt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Gean AI Apps/intro/gpt_function_calling.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Gean AI Apps/intro/project_management.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +68,7 @@
     "Python.tl.mobilenetv3.executor": "Run",
     "Python.torchPy.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "GenAIApps",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/freda/Documents/Github/learn-ai/src/Computer Vision",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -269,7 +256,7 @@
     <MESSAGE value="remove spaces" />
     <MESSAGE value="Adding Lectures files" />
     <MESSAGE value="Cleaned up chatbot.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up chatbot.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
