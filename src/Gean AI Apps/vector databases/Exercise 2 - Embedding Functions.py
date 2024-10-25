@@ -43,7 +43,6 @@ def read_quotes() -> list[str]:
 rick_and_morty_quotes = read_quotes()
 rick_and_morty_quotes[:3]
 
-
 # Oops it seems like we have some extra newlines at the end of these quotes. Does that matter?
 # How do we prove it to ourselves?
 
@@ -56,10 +55,9 @@ from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 emb1, emb2 = model.encode(["Losers look stuff up while the rest of us are carpin' all them diems.\n",
-                          "Losers look stuff up while the rest of us are carpin' all them diems."])
+                           "Losers look stuff up while the rest of us are carpin' all them diems."])
 
 np.allclose(emb1, emb2)
-
 
 # ### Write function to generate embeddings from text
 # 
@@ -78,7 +76,8 @@ from typing import Union
 
 MODEL_NAME = 'paraphrase-MiniLM-L6-v2'
 
-def generate_embeddings(input_data: Union[str, list[str]]) -> np.ndarray:  
+
+def generate_embeddings(input_data: Union[str, list[str]]) -> np.ndarray:
     model = SentenceTransformer(MODEL_NAME)
     return model.encode(input_data)
 
@@ -88,7 +87,6 @@ def generate_embeddings(input_data: Union[str, list[str]]) -> np.ndarray:
 
 embeddings = generate_embeddings(rick_and_morty_quotes)
 
-
 # In[13]:
 
 
@@ -97,7 +95,6 @@ for sentence, embedding in zip(rick_and_morty_quotes[:3], embeddings[:3]):
     print("Sentence:", sentence)
     print("Embedding:", embedding)
     print("")
-
 
 # https://www.sbert.net/docs/pretrained_models.html
 # 
@@ -109,15 +106,13 @@ for sentence, embedding in zip(rick_and_morty_quotes[:3], embeddings[:3]):
 
 len(embeddings[0])
 
-
 # Are the embeddings normalized already?
 # 
 
 # In[15]:
 
 
-np.linalg.norm(embeddings,axis=1)
-
+np.linalg.norm(embeddings, axis=1)
 
 # ### Let's put it all together
 # 
@@ -129,7 +124,6 @@ np.linalg.norm(embeddings,axis=1)
 query_text = "Are you the cause of your parents' misery?"
 query_embedding = model.encode(query_text)
 
-
 # Now we can reuse the find_nearest_neighbors function we wrote for exercise 1.
 # 
 # However, that only returns the vectors, whereas we also want the quotes. So please rewrite the find_nearest_neighbors function to return the *indices* of the nearest neighbors.
@@ -138,6 +132,7 @@ query_embedding = model.encode(query_text)
 
 
 import numpy as np
+
 
 def euclidean_distance(v1: np.ndarray, v2: np.ndarray) -> float:
     """
@@ -156,7 +151,7 @@ def euclidean_distance(v1: np.ndarray, v2: np.ndarray) -> float:
         Euclidean distance between `v1` and `v2`.
     """
     dist = v1 - v2
-    return np.linalg.norm(dist, axis=len(dist.shape)-1)
+    return np.linalg.norm(dist, axis=len(dist.shape) - 1)
 
 
 def find_nearest_neighbors(query: np.ndarray,
@@ -188,13 +183,11 @@ def find_nearest_neighbors(query: np.ndarray,
 
 indices = find_nearest_neighbors(query_embedding, embeddings, k=3)
 
-
 # In[24]:
 
 
 for i in indices:
     print(rick_and_morty_quotes[i])
-
 
 # #### Asking the question again
 # 
@@ -217,11 +210,6 @@ Having a family doesn't mean that you stop being an individual. You know the bes
 B—h, my generation gets traumatized for breakfast.
 """
 
-
 # ![image.png](attachment:image.png)
 
 # In[ ]:
-
-
-
-

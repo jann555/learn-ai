@@ -1,12 +1,11 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import numpy as np
 
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    arr = np.ndarray(shape=(1, 2), dtype=float, order='F')
+    arr.put(0, 0.57)
+    arr.put(1, 5.25)
+    print(arr[0][1])
 
 
 # Press the green button in the gutter to run the script.
