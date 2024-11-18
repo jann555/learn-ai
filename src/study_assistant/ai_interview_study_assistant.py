@@ -34,15 +34,16 @@ def save_questions_for_review(questions, file_path):
 def select_random_questions(selection, questions):
     chosen = []
     size = len(questions) - 1
+    i = 0
 
     if selection > size:
         selection = size
 
-    for i in range(selection):
-        question_index = random.randint(0, size)
-        if question_index not in chosen:
-            chosen.append(questions[question_index])
-
+    while i < selection:
+        question = questions[random.randint(0, size)]
+        if question not in chosen:
+            chosen.append(question)
+            i += 1
     return chosen
 
 
