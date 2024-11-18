@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Create genAI apps examples">
+    <list default="true" id="635e4bc4-8760-4040-ac33-2a74d83967d6" name="Changes" comment="Fix error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/study_assistant/ai_interview_study_assistant.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/study_assistant/ai_interview_study_assistant.py" afterDir="false" />
     </list>
@@ -21,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -68,7 +73,7 @@
     "Python.torchPy.executor": "Run",
     "Python.vector_db_basics.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "fix__bugs__ai__assistant",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/freda/Documents/Github/learn-ai/src/Computer Vision",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -263,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731961940758</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fix error">
+      <option name="closed" value="true" />
+      <created>1731965641508</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1731965641508</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -281,7 +294,8 @@
     <MESSAGE value="Adding Lectures files" />
     <MESSAGE value="Cleaned up chatbot.py" />
     <MESSAGE value="Create genAI apps examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create genAI apps examples" />
+    <MESSAGE value="Fix error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -295,6 +309,11 @@
           <url>file://$PROJECT_DIR$/src/adaptation_foundation_models/light_weight_fine_tuning.py</url>
           <line>42</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/study_assistant/ai_interview_study_assistant.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
