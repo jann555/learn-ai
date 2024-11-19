@@ -2,13 +2,13 @@ import random
 from decouple import config
 import openai
 import json
-import datetime;
+import datetime
 
 # Set up your OpenAI API key
 openai.api_key = config("OPEN_AI_KEY")
 openai.api_base = "https://openai.vocareum.com/v1"
 MODEL_NAME = "gpt-3.5-turbo-instruct"
-MAX_TOKENS = 150
+MAX_TOKENS = 2500
 
 
 # List of questions from the provided page
@@ -34,15 +34,16 @@ def save_questions_for_review(questions, file_path):
 def select_random_questions(selection, questions):
     chosen = []
     size = len(questions) - 1
+    i = 0
 
     if selection > size:
         selection = size
 
-    for i in range(selection):
-        question_index = random.randint(0, size)
-        if question_index not in chosen:
-            chosen.append(questions[question_index])
-
+    while i < selection:
+        question = questions[random.randint(0, size)]
+        if question not in chosen:
+            chosen.append(question)
+            i += 1
     return chosen
 
 
@@ -59,15 +60,17 @@ def analyze_answer(question, answer):
 
 
 def study_assistant(file_source):
-    questions_number = input("How many questions do you want to answer?\n")
     loaded_questions = load_questions(file_source)
+    questions_number = input(f"How many questions do you want to answer? Available questions: {len(loaded_questions)}\n")
     selected_questions = select_random_questions(int(questions_number), loaded_questions)
     correct_answers = 0
     ts = datetime.date.today()
     practice_review = {f'questions-{ts}': []}
+
+    # Loop through all the questions, analyze the results and provide feedback for each question
     for i, question in enumerate(selected_questions):
         question_for_review = {'question': "", 'answer': "", 'feedback': ""}
-        answer = ask_question(question)
+        answer = ask_question(f'{i+1}.- {question}')
         feedback = analyze_answer(question, answer)
         if "incorrect".lower() not in feedback:
             correct_answers += 1
@@ -81,16 +84,18 @@ def study_assistant(file_source):
         print(f'Score [{correct_answers}/{i + 1}] correct answers')
         print(f"Feedback: {feedback}\n")
 
-    if practice_review:
+    # Save questions that need reviewing
+    if practice_review[f'questions-{ts}']:
         save_questions_for_review(practice_review, f'review-{file_source}')
-
+    # Display final results to the user
     final_score = f'[{correct_answers}/{questions_number}]'
     print(f'Final Score {final_score} correct answers')
     print('You have reached the end. I hope you learned something')
 
 
 def main():
-    study_assistant('java_questions.json')
+    path = 'questions/'
+    study_assistant(f'{path}java_questions.json')
 
 
 if __name__ == "__main__":
