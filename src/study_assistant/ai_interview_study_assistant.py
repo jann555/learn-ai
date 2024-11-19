@@ -94,7 +94,8 @@ def study_assistant(file_source):
 
 
 def main():
-    study_assistant('java_questions.json')
+    path = 'questions/'
+    study_assistant(f'{path}java_questions.json')
 
 
 if __name__ == "__main__":
